@@ -1,0 +1,35 @@
+body{
+    flex-flow: column;
+    gap: 16px;
+}
+
+.counterbox{
+    min-height: 100px;
+    min-width: 100px;
+    border: 1px solid grey;
+}
+
+.buttons{
+    display: flex;
+    gap: 16px;
+}
+
+.plus{
+    background: green;
+}
+
+.minus{
+    background: red;
+}
+
+.buttons>*{
+    min-height: 20px;
+    min-width: 20px;
+    border: 1px solid grey;
+}
+
+.allcenterflex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

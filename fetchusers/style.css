@@ -1,0 +1,34 @@
+.userbox,.image,.nameandemail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root{
+    --bgimage:'';
+}
+
+.userbox{
+    height: 20%;
+}
+
+.image{
+    height: 100%;
+    width: 35%;
+}
+
+.nameandemail{
+    height: 100%;
+    width: 50%;
+    font-size: xx-large;
+    background: green;
+}
+
+.name,.email{
+    width: 100%;
+    height: 50%;
+}
+
+.nameandemail{
+    flex-flow: column;
+}
