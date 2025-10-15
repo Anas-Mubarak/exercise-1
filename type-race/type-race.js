@@ -68,3 +68,66 @@ let word_list = ['consider', 'minute', 'accord', 'evident', 'practice', 'intend'
     'apocryphal', 'veracious', 'pendulous', 'exegesis', 'effluvium', 'apposite', 'viscous', 'misanthrope', 'vintner', 'halcyon', 'anthropomorphic', 'turgid', 'malaise', 
     'polemical', 'gadfly', 'atavism', 'contusion', 'parsimonious', 'dulcet', 'reprise', 'anodyne', 'bemused']
 
+let textbox = document.querySelector('.textbox')
+let currentindex = 0,wrongcount = 0,time=0
+let timer = document.querySelector('.timer')
+let fflg = 1,timeractive = 1
+
+function getrandomstring(word_size)
+{
+    let randomword = ''
+    for(let i=0;i<word_size;i++)
+    {
+        randomword+=word_list[Math.floor(Math.random()*word_list.length)]+' '
+    }
+    return randomword.trimEnd()
+}
+
+let randomstring = getrandomstring(25)
+
+for(let i=0;i<randomstring.length;i++)
+{
+    let ni = document.createElement('span')
+    ni.id = 'i'+i
+    ni.innerText = randomstring[i]
+    textbox.append(ni)
+}
+
+function starttimer()
+{
+    let time_counter = setInterval(() => {
+        time++
+        timer.innerText = 25-time
+        if((25-time)<=0)
+        {
+            clearInterval(time_counter)
+            timeractive = 0
+            console.log((currentindex/5)/25)
+            document.querySelector('.wpm').innerText = Math.round((currentindex/5)*(60/25))
+            document.querySelector('.accuracy').innerText = (currentindex)/(currentindex+wrongcount)*100+"%"
+        }
+    }, 1000); 
+}
+
+document.addEventListener('keydown',(e)=>{
+    if(timeractive)
+    {
+        console.log(e.key)
+        if(fflg)
+        {
+            starttimer()
+            fflg = 0
+        }
+        let currentletter = document.querySelector(`#i${currentindex}`)
+        console.log(currentletter,currentindex)
+        if(e.key==currentletter.innerText)
+        {
+            currentletter.classList.add('correct')
+            console.log(currentletter)
+            currentindex++
+        }
+        else{
+            wrongcount++
+        }
+    }
+})
